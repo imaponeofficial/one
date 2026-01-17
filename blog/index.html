@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Imap One - Novidades e Insights</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* === PADRONIZAÇÃO VISUAL === */
+        :root {
+            --primary: #D4AF37;
+            --primary-hover: #b8941e;
+            --dark: #121212;
+            --dark-gray: #181818;
+            --medium-gray: #242424;
+            --light: #EAEAEA;
+            --text-gray: #A0A0A0;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden;}
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+        }
+
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+        ul { list-style: none; }
+
+        /* === HEADER TRANSPARENTE (IGUAL AO MAIN) === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            /* Fundo degradê transparente inicial */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            transition: 0.4s;
+        }
+
+        /* Estado ao rolar a página */
+        header.scrolled {
+            padding: 1rem 5%;
+            background: rgba(18, 18, 18, 0.98); /* Fundo sólido */
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 3px; color: var(--white); text-transform: uppercase; }
+        .logo span { color: var(--primary); }
+
+        /* Menu Desktop */
+        nav { display: flex; gap: 2.5rem; align-items: center; }
+        nav a { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: #ccc; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--primary); }
+
+        .btn {
+            display: inline-block; padding: 1rem 2.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.8rem; cursor: pointer; transition: all 0.4s ease; border-radius: 0px;
+        }
+        .btn-gold { background: var(--primary); color: #000; border: 1px solid var(--primary); }
+        .btn-gold:hover { background: transparent; color: var(--primary); }
+
+        /* === CONTROLES DO HEADER (IDIOMA + HAMBURGUER) === */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Botão de Idioma */
+        #lang-toggle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        #lang-toggle:hover { background: var(--primary); color: #000; }
+
+        /* Hambúrguer */
+        .hamburger { 
+            display: none; 
+            font-size: 1.5rem; 
+            color: var(--white); 
+            cursor: pointer; 
+            transition: color 0.3s; 
+        }
+        .hamburger:hover { color: var(--primary); }
+
+        /* === HERO BLOG === */
+        .hero-blog {
+            height: 50vh;
+            /* Degradê sobre a imagem para o texto ficar legível */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1920&q=80') center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            /* Removido margin-top fixo para funcionar com o header transparente */
+            padding-top: 80px; 
+        }
+        .hero-content { max-width: 800px; padding: 0 2rem; }
+        .hero-subtitle { color: var(--primary); text-transform: uppercase; letter-spacing: 4px; font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .hero-blog h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero-text { font-size: 1.2rem; color: #f0f0f0; }
+
+        /* === SECTIONS === */
+        section { padding: 7rem 5%; }
+        .section-header { text-align: center; margin-bottom: 5rem; max-width: 750px; margin-left: auto; margin-right: auto; }
+        .section-label { color: var(--primary); text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; display: block; }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+        .divider { width: 80px; height: 2px; background: var(--primary); margin: 1.5rem auto; }
+
+        /* === DESTAQUE === */
+        .destaque-section { background: var(--dark-gray); }
+        .destaque-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center; }
+        .destaque-image { width: 100%; height: 500px; overflow: hidden; border-radius: 4px; }
+        .destaque-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .destaque-image:hover img { transform: scale(1.05); }
+        .destaque-content { padding: 2rem; }
+        .destaque-meta { display: flex; gap: 2rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-gray); }
+        .destaque-content h2 { font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.3; }
+        .destaque-content p { color: var(--text-gray); line-height: 1.6; margin-bottom: 2rem; font-size: 1rem; }
+        .read-more { color: var(--primary); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .read-more:hover { gap: 1rem; }
+
+        /* === ARTIGOS === */
+        .artigos-section { background: var(--dark); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+        .blog-card { background: var(--dark-gray); border-radius: 4px; overflow: hidden; transition: 0.4s; border: 1px solid rgba(255,255,255,0.05); }
+        .blog-card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        .blog-image { width: 100%; height: 250px; overflow: hidden; }
+        .blog-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .blog-card:hover .blog-image img { transform: scale(1.1); }
+        .blog-content { padding: 2rem; }
+        .blog-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-gray); }
+        .blog-content h4 { font-size: 1.2rem; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; line-height: 1.4; font-weight: 600; }
+        .blog-content p { color: var(--text-gray); line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .blog-link { color: var(--primary); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .blog-link:hover { gap: 1rem; }
+
+        /* === NEWSLETTER === */
+        .newsletter-section { background: linear-gradient(135deg, var(--primary-hover), var(--primary)); padding: 6rem 5%; text-align: center; }
+        .newsletter-section h3 { font-size: 2.2rem; margin-bottom: 1rem; color: #000; font-family: 'Playfair Display', serif; }
+        .newsletter-section p { font-size: 1.1rem; margin-bottom: 2.5rem; color: rgba(0,0,0,0.8); }
+        .newsletter-form { max-width: 600px; margin: 0 auto; display: flex; gap: 1rem; }
+        .newsletter-form input { flex: 1; padding: 1.2rem 1.5rem; border: none; border-radius: 0px; font-size: 1rem; background: rgba(255,255,255,0.9); }
+        .newsletter-form button {
+            padding: 1.2rem 2.5rem; background: #000; color: var(--white); border: none; border-radius: 0px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+        }
+        .newsletter-form button:hover { background: var(--dark-gray); }
+
+        /* === FOOTER === */
+        footer { background: #050505; padding: 4rem 5% 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .footer-logo { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 2px; }
+        footer p { color: var(--text-gray); margin-bottom: 2rem; font-size: 0.9rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-gray); font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--primary); }
+        .social-links { display: flex; gap: 15px; justify-content: center; margin-bottom: 2rem; }
+        .social-links a { width: 45px; height: 45px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: #777; }
+        .social-links a:hover { border-color: var(--primary); background: var(--primary); color: #000; }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 2rem; color: var(--text-gray); font-size: 0.85rem; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .destaque-grid { grid-template-columns: 1fr; }
+            .destaque-image { height: 400px; }
+        }
+
+        @media (max-width: 768px) {
+            nav, .cta-header { display: none; }
+            .hamburger { display: block; }
+            .hero-blog h1 { font-size: 2.5rem; }
+            section { padding: 5rem 5%; }
+            .newsletter-form { flex-direction: column; }
+        }
+
+        /* MENU MOBILE ATIVO */
+        nav.mobile-active {
+            display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0;
+            background: rgba(18, 18, 18, 0.98); padding: 2rem; gap: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); animation: slideDown 0.3s ease; z-index: 998;
+        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <a href="../blog/" class="logo">IMAP<span>ONE blog</span></a>
+        
+        <nav>
+            <a href="../blog/" data-i18n="nav-home">Início</a>
+            <a href="../loteamentos/" data-i18n="nav-lots">Loteamentos</a>
+            <a href="../#investimento" data-i18n="nav-invest">Investimento</a>
+            <a href="../#tecnologia" data-i18n="nav-tech">Tecnologia</a>
+            <a href="../#destinos" data-i18n="nav-dest">Destinos</a>
+            <a href="../#lifestyle" data-i18n="nav-life">Lifestyle</a>
+            <a href="../corretores/" data-i18n="nav-brokers">Corretores</a>
+            <a href="../blog/" class="active" data-i18n="nav-blog">Blog</a>
+        </nav>
+
+        <div class="cta-header">
+            <a href="https://imapone.vercel.app/" class="btn btn-gold" data-i18n="btn-map">Acessar Mapa</a>
+        </div>
+
+        <div class="header-controls">
+            <div id="lang-toggle" onclick="toggleLanguage()">PT</div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <section class="hero-blog">
+        <div class="hero-content" data-aos="fade-up">
+            <p class="hero-subtitle" data-i18n="hero-sub">BLOG IMAP ONE</p>
+            <h1 data-i18n="hero-title">Novidades & Insights</h1>
+            <p class="hero-text" data-i18n="hero-text">Fique por dentro das últimas tendências do mercado imobiliário da região</p>
+        </div>
+    </section>
+
+    <section class="destaque-section">
+        <div class="destaque-grid">
+            <div class="destaque-image" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Preá">
+            </div>
+            <div class="destaque-content" data-aos="fade-left">
+                <div class="destaque-meta">
+                    <span><i class="far fa-calendar"></i> 15 Jan 2025</span>
+                    <span data-i18n="cat-market"><i class="far fa-folder"></i> Mercado</span>
+                    <span><i class="far fa-clock"></i> 8 min</span>
+                </div>
+                <h2 data-i18n="feat-title">Preá: A Nova Pérola do Litoral Cearense</h2>
+                <p data-i18n="feat-text">Descubra por que Preá está se tornando o destino preferido de investidores nacionais e internacionais. Com crescimento acelerado, infraestrutura em desenvolvimento e natureza preservada, a região se consolida como uma das melhores oportunidades de investimento do Nordeste.</p>
+                <a href="#" class="read-more" data-i18n="btn-read">
+                    Ler Artigo Completo <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="artigos-section">
+        <div class="section-header" data-aos="fade-up">
+            <p class="section-label" data-i18n="label-recent">ARTIGOS RECENTES</p>
+            <h2 data-i18n="recent-title">Últimas Publicações</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="blog-grid">
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Investimento">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>10 Jan 2025</span>
+                        <span data-i18n="cat-invest">Investimento</span>
+                    </div>
+                    <h4 data-i18n="art-1-t">Guia Completo: Como Investir em Terrenos Litorâneos</h4>
+                    <p data-i18n="art-1-d">Tudo que você precisa saber antes de investir em imóveis no litoral do Ceará. Análise de documentação, localização, infraestrutura e muito mais.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1502933691298-84fc14542831?w=800&q=80" alt="Jericoacoara">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>05 Jan 2025</span>
+                        <span data-i18n="cat-life">Lifestyle</span>
+                    </div>
+                    <h4 data-i18n="art-2-t">Viver em Jeri: Mais que um Sonho Possível</h4>
+                    <p data-i18n="art-2-d">Conheça histórias de quem trocou a cidade grande pela tranquilidade do litoral e descobriu um novo estilo de vida.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Aeroporto">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>28 Dez 2024</span>
+                        <span data-i18n="cat-market">Mercado</span>
+                    </div>
+                    <h4 data-i18n="art-3-t">Aeroporto de Jeri: Impactos no Mercado Imobiliário</h4>
+                    <p data-i18n="art-3-d">Como a ampliação do aeroporto regional está impulsionando a valorização de imóveis em toda a Rota das Emoções.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Energia">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>20 Dez 2024</span>
+                        <span data-i18n="cat-market">Mercado</span>
+                    </div>
+                    <h4 data-i18n="art-4-t">Energia Renovável Atrai Investidores para a Região</h4>
+                    <p data-i18n="art-4-d">Os parques eólicos e solares estão transformando o Ceará em polo de energia limpa e aquecendo o mercado imobiliário.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80" alt="Kitesurf">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>15 Dez 2024</span>
+                        <span data-i18n="cat-dest">Destinos</span>
+                    </div>
+                    <h4 data-i18n="art-5-t">Preá: Capital Mundial do Kitesurf</h4>
+                    <p data-i18n="art-5-d">Entenda por que Preá conquistou kitesurfistas do mundo todo e como isso impacta o turismo e o mercado imobiliário local.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" alt="Tecnologia">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>10 Dez 2024</span>
+                        <span data-i18n="cat-tech">Tecnologia</span>
+                    </div>
+                    <h4 data-i18n="art-6-t">Geotecnologia Revoluciona Vendas de Imóveis</h4>
+                    <p data-i18n="art-6-d">Como mapas interativos e geolocalização estão transformando a forma de comprar e vender propriedades.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Tatajuba">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>05 Dez 2024</span>
+                        <span data-i18n="cat-dest">Destinos</span>
+                    </div>
+                    <h4 data-i18n="art-7-t">Tatajuba: Natureza Intocada e Oportunidades</h4>
+                    <p data-i18n="art-7-d">Explore as dunas, lagoas e o potencial de investimento em uma das regiões mais preservadas do Ceará.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="800">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80" alt="Arquitetura">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>01 Dez 2024</span>
+                        <span data-i18n="cat-life">Lifestyle</span>
+                    </div>
+                    <h4 data-i18n="art-8-t">Arquitetura Sustentável no Litoral Cearense</h4>
+                    <p data-i18n="art-8-d">Tendências em construção sustentável que respeitam o meio ambiente e agregam valor aos imóveis.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up" data-aos-delay="900">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&q=80" alt="Camocim">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>25 Nov 2024</span>
+                        <span data-i18n="cat-dest">Destinos</span>
+                    </div>
+                    <h4 data-i18n="art-9-t">Camocim: Infraestrutura e Desenvolvimento</h4>
+                    <p data-i18n="art-9-d">A cidade que é porta de entrada para a Rota das Emoções e oferece toda infraestrutura necessária para investidores.</p>
+                    <a href="#" class="blog-link" data-i18n="btn-read">Ler Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="#" class="btn btn-gold" data-i18n="btn-load">Carregar Mais Artigos</a>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div data-aos="fade-up">
+            <h3 data-i18n="news-title">Fique Por Dentro</h3>
+            <p data-i18n="news-text">Receba novidades, insights e oportunidades exclusivas direto no seu email</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail">
+                <button type="submit" data-i18n="btn-sub">Inscrever</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">IMAP<span style="color: var(--primary);">ONE</span></div>
+        <p data-i18n="footer-text">Inovação imobiliária no litoral do Ceará</p>
+        
+        <div class="footer-links">
+            <a href="../blog/" data-i18n="nav-home">Início</a>
+            <a href="../loteamentos/" data-i18n="nav-lots">Loteamentos</a>
+            <a href="../#investimento" data-i18n="nav-invest">Investimento</a>
+            <a href="../corretores/" data-i18n="nav-brokers">Corretores</a>
+            <a href="https://imapone.vercel.app/" data-i18n="nav-map">Mapa de Imóveis</a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/imapofficial?igsh=eTVvMWc2ZmVycmp3"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5585996138679"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Imap One. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // HEADER & BOTÃO SCROLL
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // HAMBURGUER
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('mobile-active');
+                const icon = hamburger.querySelector('i');
+                if (nav.classList.contains('mobile-active')) { icon.className = 'fas fa-times'; }
+                else { icon.className = 'fas fa-bars'; }
+            });
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('mobile-active');
+                    hamburger.querySelector('i').className = 'fas fa-bars';
+                });
+            });
+        }
+
+        // Tradução
+        const translations = {
+            en: {
+                "nav-home": "Home", "nav-invest": "Investment", "nav-tech": "Technology", "nav-brokers": "Brokers", "nav-blog": "Blog", "nav-lots": "Subdivisions", "nav-dest": "Destinations", "nav-life": "Lifestyle", "btn-map": "Access Map",
+                "hero-sub": "IMAP ONE BLOG", "hero-title": "News & Insights", "hero-text": "Stay up to date with the latest real estate market trends in the region",
+                "cat-all": "All", "cat-market": "Market", "cat-invest": "Investment", "cat-life": "Lifestyle", "cat-tech": "Technology", "cat-dest": "Destinations",
+                "feat-title": "Preá: The New Pearl of the Coast", "feat-text": "Discover why Preá is becoming the preferred destination for national and international investors.",
+                "btn-read": "Read Full Article", "label-recent": "RECENT ARTICLES", "recent-title": "Latest Posts",
+                "art-1-t": "Complete Guide: Investing in Coastal Land", "art-1-d": "Everything you need to know before investing in coastal properties.",
+                "art-2-t": "Living in Jeri: More than a Dream", "art-2-d": "Stories of those who swapped the city for tranquility.",
+                "art-3-t": "Jeri Airport: Real Estate Impact", "art-3-d": "How the airport expansion boosts property values.",
+                "art-4-t": "Renewable Energy Attracts Investors", "art-4-d": "Wind and solar parks are transforming Ceará.",
+                "art-5-t": "Preá: World Kitesurf Capital", "art-5-d": "Why Preá conquered kitesurfers globally.",
+                "art-6-t": "Geotechnology Revolutions Sales", "art-6-d": "How interactive maps change buying and selling.",
+                "art-7-t": "Tatajuba: Untouched Nature", "art-7-d": "Explore dunes and investment potential.",
+                "art-8-t": "Sustainable Architecture", "art-8-d": "Trends in sustainable construction.",
+                "art-9-t": "Camocim: Infrastructure & Development", "art-9-d": "The gateway to Route of Emotions.",
+                "btn-load": "Load More Articles", "news-title": "Stay Updated", "news-text": "Receive news and opportunities in your email", "btn-sub": "Subscribe",
+                "footer-text": "Real estate innovation on the coast of Ceará", "nav-map": "Property Map"
+            }
+        };
+
+        let currentLang = 'pt';
+        function toggleLanguage() {
+            const btn = document.getElementById('lang-toggle');
+            if (currentLang === 'pt') {
+                currentLang = 'en';
+                btn.textContent = 'EN';
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations.en[key]) el.innerHTML = translations.en[key];
+                });
+            } else { window.location.reload(); }
+        }
+    </script>
+</body>
+</html>
