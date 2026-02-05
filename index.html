@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imap One | Group</title>
+    <title>Golden Village | Imobiliária</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -72,7 +72,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2rem 6%;
+            padding: 1.5rem 6%; /* Ajustado levemente para acomodar a logo */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -82,34 +82,60 @@
         }
 
         header.scrolled {
-            padding: 1.2rem 6%;
+            padding: 1rem 6%;
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(212, 175, 55, 0.08);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
+        /* === LOGO NOVA (Golden Village) === */
         .logo { 
-            font-size: 1rem; 
-            font-weight: 700; 
-            letter-spacing: 2px;
-            color: var(--white); 
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif; /* Mantendo Montserrat apenas no logo base se desejar, ou mudar para Inter */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .logo span { 
-            font-weight: 600; 
-            background: linear-gradient(to right, #BF953F, #EDC967, #B38728, #BF953F); 
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shine 4s linear infinite;
+        .logo img {
+            height: 55px; /* Altura ajustada para o header */
+            width: auto;
+            /* O mix-blend-mode: screen faz o fundo preto da imagem ficar transparente */
+            mix-blend-mode: screen; 
+            /* Filtros iniciais */
+            filter: brightness(100%);
+            /* Animação de brilho contínuo 
+            animation: shine-logo 4s ease-in-out infinite;
+            transition: all 0.3s ease;*/
+        }
+        
+        .logo img {
+            height: 55px; 
+            width: auto;
+            mix-blend-mode: screen; 
+            filter: brightness(100%);
+            
+            /* Para DESATIVAR, deixe essa linha como comentário assim: */
+            /* animation: shine-logo 4s ease-in-out infinite; */
+            
+            transition: all 0.3s ease;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        /* Animação que simula o efeito de brilho/mudança de tom do texto anterior */
+        @keyframes shine-logo {
+            0% {
+                filter: brightness(100%) drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+            }
+            50% {
+                /* Aumenta o brilho e cria um leve "glow" dourado */
+                filter: brightness(130%) sepia(20%) drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+            }
+            100% {
+                filter: brightness(100%) drop-shadow(0 0 0 rgba(212, 175, 55, 0));
+            }
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         /* Menu Desktop */
@@ -213,7 +239,7 @@
                 display: none; /* Flex via JS */
                 flex-direction: column;
                 position: fixed;
-                top: 70px;
+                top: 80px; /* Ajustado para a altura da nova logo */
                 left: 0;
                 right: 0;
                 background: rgba(10, 10, 10, 0.98);
@@ -566,7 +592,9 @@
 <body>
 
     <header id="header">
-        <div class="logo">imap<span>ONE Group</span></div>
+        <div class="logo">
+            <img src="logo.png" alt="Golden Village">
+        </div>
         
         <nav class="nav-links">
             <a href="loteamentos/" data-i18n="nav-lots">Loteamentos</a>
@@ -668,7 +696,7 @@
             <p class="section-label" data-i18n="label-dest">DESTINOS</p>
             <h2 data-i18n="dest-title">Explore as Joias<br>do Litoral Oeste</h2>
             <div class="divider"></div>
-            <p data-i18n="dest-sub">De vilarejos preservados a destinos internacionais, conheça as principais áreas de atuação da Imap One.</p>
+            <p data-i18n="dest-sub">De vilarejos preservados a destinos internacionais, conheça as principais áreas de atuação da Golden Village.</p>
         </div>
 
         <div class="destinos-grid">
@@ -794,7 +822,7 @@
 
         <div class="depoimentos-grid">
             <div class="depoimento-card" data-aos="fade-up" data-aos-delay="100">
-                <p class="depoimento-texto" data-i18n="depo-1">"O mapa interativo da Imap One revolucionou minha busca. Consegui visualizar dezenas de terrenos sem sair de casa e fechar um ótimo negócio em Preá."</p>
+                <p class="depoimento-texto" data-i18n="depo-1">"O mapa interativo da Imobiliária revolucionou minha busca. Consegui visualizar dezenas de terrenos sem sair de casa e fechar um ótimo negócio em Preá."</p>
                 <div class="depoimento-autor">
                     <div class="depoimento-avatar">RC</div>
                     <div class="depoimento-info"><h5>Roberto Costa</h5><span>Investidor • São Paulo</span></div>
@@ -833,7 +861,7 @@
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question"><span data-i18n="faq-2-q">A Imap One faz parcerias com corretores?</span> <i class="fas fa-plus faq-icon"></i></div>
+                <div class="faq-question"><span data-i18n="faq-2-q">A Golden Village faz parcerias com corretores?</span> <i class="fas fa-plus faq-icon"></i></div>
                 <div class="faq-answer" data-i18n="faq-2-a">Sim! Se você é corretor autônomo e tem imóveis na região (ou quer captar), pode se cadastrar como parceiro e utilizar nossa plataforma.</div>
             </div>
 
@@ -865,7 +893,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-about">
-                <a href="#" class="footer-logo">IMAP<span>ONE</span></a>
+                <a href="#" class="footer-logo">GOLDEN<span>VILLAGE</span></a>
                 <p data-i18n="footer-text">Inovação imobiliária no litoral do Ceará. Unimos tecnologia e expertise local para entregar os melhores negócios em Camocim, Jeri e região.</p>
                 <div style="margin-top: 1.5rem;">
                     <a href="https://www.instagram.com/imapofficial?igsh=eTVvMWc2ZmVycmp3" style="margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
@@ -898,7 +926,7 @@
                 <h4 data-i18n="footer-contact">Contato</h4>
                 <ul>
                     <li><i class="fas fa-phone-alt text-gold"></i> (85) 99613-8679</li>
-                    <li><i class="fas fa-envelope text-gold"></i> imaponeofficial@gmail.com</li>
+                    <li><i class="fas fa-envelope text-gold"></i> contato@goldenvillage.com</li>
                     <li><i class="fas fa-map-marker-alt text-gold"></i> Brasil</li>
                     <li style="margin-top: 1rem;"><a href="corretores/" style="color: var(--gold);" data-i18n="footer-work">Trabalhe Conosco</a></li>
                 </ul>
@@ -906,7 +934,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 Imap One. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Golden Village. Todos os direitos reservados.</p>
             <p>Desenvolvido com tecnologia Imap One</p>
         </div>
     </footer>
