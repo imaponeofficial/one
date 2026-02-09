@@ -15,7 +15,7 @@
             --gold: #D4AF37;
             --gold-dark: #b8941e;
             --red: #C41E3A;
-            --black: #0A0A0A;
+            --black: #242424;
             --gray-dark: #141414;
             --gray-medium: #1A1A1A;
             --gray-light: #2A2A2A;
@@ -103,19 +103,6 @@
             mix-blend-mode: screen; 
             /* Filtros iniciais */
             filter: brightness(100%);
-            /* Animação de brilho contínuo 
-            animation: shine-logo 4s ease-in-out infinite;
-            transition: all 0.3s ease;*/
-        }
-        
-        .logo img {
-            height: 55px; 
-            width: auto;
-            mix-blend-mode: screen; 
-            filter: brightness(100%);
-            
-            /* Para DESATIVAR, deixe essa linha como comentário assim: */
-            /* animation: shine-logo 4s ease-in-out infinite; */
             
             transition: all 0.3s ease;
         }
@@ -466,31 +453,8 @@
         .processo-content h4 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--white); }
         .processo-content p { color: var(--text-gray); font-size: 0.95rem; font-weight: 300; }
 
-        /* === DEPOIMENTOS (Estilo Cards Testando1) === */
-        .depoimentos-section { background: var(--black); }
-        .depoimentos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+        /* === DEPOIMENTOS REMOVIDO === */
         
-        .depoimento-card { 
-            background: rgba(255, 255, 255, 0.02);
-            padding: 3.5rem 3rem; 
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            position: relative; transition: all 0.4s ease;
-        }
-        .depoimento-card::before { 
-            content: '"'; position: absolute; top: 2rem; left: 2.5rem; font-size: 5rem; 
-            color: var(--gold); opacity: 0.15; font-family: 'Cormorant Garamond', serif; line-height: 1;
-        }
-        .depoimento-card:hover { border-color: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
-        
-        .depoimento-texto { font-style: italic; margin-bottom: 2.5rem; color: rgba(255,255,255,0.8); line-height: 1.9; font-weight: 300; font-size: 0.95rem; }
-        .depoimento-autor { display: flex; align-items: center; gap: 1rem; }
-        .depoimento-avatar { 
-            width: 45px; height: 45px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; color: var(--black); font-weight: 600; font-size: 0.85rem;
-        }
-        .depoimento-info h5 { font-size: 0.9rem; margin-bottom: 0.2rem; font-family: 'Inter', sans-serif; font-weight: 500; }
-        .depoimento-info span { font-size: 0.75rem; color: var(--text-gray); }
-
         /* === FAQ === */
         .faq-section { background-color: var(--gray-medium); }
         .faq-container { max-width: 800px; margin: 0 auto; }
@@ -661,7 +625,7 @@
     <section id="tecnologia" class="tech-section">
         <div class="section-header" data-aos="fade-up">
             <p class="section-label" data-i18n="label-tech">TECNOLOGIA</p>
-            <h2 data-i18n="tech-title">Mapa Interativo<br>de Alta Precisão</h2>
+            <h2 data-i18n="tech-title">Mapa Interativo<br>de Imóveis</h2>
             <div class="divider"></div>
             <p data-i18n="tech-sub">Somos a primeira imobiliária da região com tecnologia de geolocalização em tempo real, permitindo que você explore imóveis com precisão cirúrgica.</p>
         </div>
@@ -669,25 +633,25 @@
         <div class="tech-grid">
             <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="tech-icon"><i class="fas fa-map-marked-alt"></i></div>
-                <h4 data-i18n="tech-1-t">Geolocalização Precisa</h4>
-                <p data-i18n="tech-1-d">Veja a localização exata de cada imóvel, limites de terrenos, distância para pontos de interesse e muito mais.</p>
+                <h4 data-i18n="tech-1-t">Lotes e Terrenos</h4>
+                <p data-i18n="tech-1-d">Áreas para construção em loteamentos consolidados, com infraestrutura completa e documentação regularizada.</p>
             </div>
 
             <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="tech-icon"><i class="fas fa-filter"></i></div>
-                <h4 data-i18n="tech-2-t">Filtros Inteligentes</h4>
-                <p data-i18n="tech-2-d">Busque por tipo, preço, área, distância da praia, acesso pavimentado e dezenas de outros critérios.</p>
+                <h4 data-i18n="tech-2-t">Casas de Praia</h4>
+                <p data-i18n="tech-2-d">Residências prontas para morar, com acabamento premium em localizações privilegiadas à beira-mar.</p>
             </div>
 
             <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="tech-icon"><i class="fas fa-satellite"></i></div>
-                <h4 data-i18n="tech-3-t">Imagens de Satélite</h4>
-                <p data-i18n="tech-3-d">Visualize o terreno em alta resolução, com imagens aéreas atualizadas e visão 360º do entorno.</p>
+                <h4 data-i18n="tech-3-t">Pontos Comerciais</h4>
+                <p data-i18n="tech-3-d">Imóveis estratégicos para negócios em áreas de alto fluxo turístico e grande potencial de retorno financeiro.</p>
             </div>
         </div>
 
         <div style="text-align: center; margin-top: 5rem;">
-            <a href="https://imapone.vercel.app/" class="btn btn-gold" data-i18n="btn-test">Testar Plataforma Agora</a>
+            <a href="https://imapone.vercel.app/" class="btn btn-gold" data-i18n="btn-test">Acessar Imóveis Agora</a>
         </div>
     </section>
 
@@ -808,40 +772,6 @@
                 <div></div> <div class="processo-content">
                     <h4 data-i18n="proc-4-t">Negociação & Fechamento</h4>
                     <p data-i18n="proc-4-d">Intermediamos a negociação, elaboramos o contrato e acompanhamos até a escritura definitiva.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="depoimentos-section">
-        <div class="section-header" data-aos="fade-up">
-            <p class="section-label" data-i18n="label-depo">DEPOIMENTOS</p>
-            <h2 data-i18n="depo-title">O que Nossos<br>Clientes Dizem</h2>
-            <div class="divider"></div>
-        </div>
-
-        <div class="depoimentos-grid">
-            <div class="depoimento-card" data-aos="fade-up" data-aos-delay="100">
-                <p class="depoimento-texto" data-i18n="depo-1">"O mapa interativo da Imobiliária revolucionou minha busca. Consegui visualizar dezenas de terrenos sem sair de casa e fechar um ótimo negócio em Preá."</p>
-                <div class="depoimento-autor">
-                    <div class="depoimento-avatar">RC</div>
-                    <div class="depoimento-info"><h5>Roberto Costa</h5><span>Investidor • São Paulo</span></div>
-                </div>
-            </div>
-
-            <div class="depoimento-card" data-aos="fade-up" data-aos-delay="200">
-                <p class="depoimento-texto" data-i18n="depo-2">"Como corretor parceiro, tenho acesso a ferramentas que outras imobiliárias não oferecem. Minhas vendas triplicaram desde que me associei."</p>
-                <div class="depoimento-autor">
-                    <div class="depoimento-avatar">MS</div>
-                    <div class="depoimento-info"><h5>Mariana Silva</h5><span>Corretora Parceira • Fortaleza</span></div>
-                </div>
-            </div>
-
-            <div class="depoimento-card" data-aos="fade-up" data-aos-delay="300">
-                <p class="depoimento-texto" data-i18n="depo-3">"Profissionalismo e tecnologia em doses iguais. A equipe me ajudou desde a escolha do terreno até a regularização. Recomendo!"</p>
-                <div class="depoimento-autor">
-                    <div class="depoimento-avatar">PA</div>
-                    <div class="depoimento-info"><h5>Paulo Andrade</h5><span>Empresário • Rio de Janeiro</span></div>
                 </div>
             </div>
         </div>
@@ -1050,33 +980,44 @@
             });
         }
 
-        // TRADUÇÃO (Conteúdo Original)
+        // TRADUÇÃO (ATUALIZADA)
         const translations = {
             en: {
                 "nav-lots": "Subdivisions",
                 "nav-invest": "Investment", "nav-tech": "Technology", "nav-dest": "Destinations",
                 "nav-life": "Lifestyle", "nav-brokers": "Brokers", "nav-blog": "Blog", "btn-map": "Access Map",
-                "hero-title": "The Treasure of<br>West Coast", "hero-text": "Connecting investors and builders to the most exclusive areas of the Route of Emotions.",
+                "hero-title": "The Treasure of<br>West Coast", "hero-text": "Connecting investors and builders to the most exclusive areas of the Route of Emotions through market intelligence, geotechnology and local expertise.",
                 "btn-explore": "Explore Properties", "btn-partner": "Become a Partner", "label-pot": "POTENTIAL",
-                "invest-title": "Why invest here?", "invest-text": "The region from Camocim to Jericoacoara is experiencing a virtuous cycle of development.",
-                "stat-1": "Annual Appreciation", "stat-2": "Tourists per Year", "stat-3": "Preserved Beaches", "stat-4": "World Kite Destination",
-                "label-tech": "TECHNOLOGY", "tech-title": "High Precision<br>Interactive Map", "tech-sub": "We are the first real estate agency in the region with real-time geolocation.",
-                "tech-1-t": "Precise Geolocation", "tech-1-d": "See exact location of each property, boundaries and distance to points of interest.",
-                "tech-2-t": "Smart Filters", "tech-2-d": "Search by type, price, area, distance from beach and paved access.",
-                "tech-3-t": "Satellite Images", "tech-3-d": "View land in high resolution with updated aerial images.",
-                "btn-test": "Test Platform Now", "label-dest": "DESTINATIONS", "dest-title": "Explore the Jewels<br>of the West Coast",
-                "dest-sub": "From preserved villages to international destinations.", "dest-1-tag": "International Hub", "dest-1-desc": "Ceará's most famous destination.",
-                "dest-2-tag": "Kitesurf Paradise", "dest-2-desc": "Constant winds and crystal clear lagoons.", "dest-3-tag": "Dunes & Lagoons", "dest-3-desc": "Untouched nature.",
-                "dest-4-tag": "City of Wind", "dest-4-desc": "Urban center of the region.", "label-life": "LIFESTYLE", "life-title": "More than a Property,<br>a Lifestyle",
-                "life-sub": "Living here is connecting with nature, sports and well-being.", "life-food": "Gastronomy", "life-beach": "Beaches", "life-arch": "Architecture", "life-nat": "Nature",
-                "label-proc": "PROCESS", "proc-title": "How It Works", "proc-sub": "From first contact to the deed, we accompany you.",
-                "proc-1-t": "Initial Consultation", "proc-1-d": "We understand your needs and budget.", "proc-2-t": "Property Visit", "proc-2-d": "In-person or virtual visits.",
-                "proc-3-t": "Legal Analysis", "proc-3-d": "We verify documentation and ensure security.", "proc-4-t": "Negotiation & Closing", "proc-4-d": "We mediate negotiation and prepare contracts.",
-                "label-depo": "TESTIMONIALS", "depo-title": "What Our<br>Clients Say", "depo-1": "\"The interactive map revolutionized my search.\"", "depo-2": "\"My sales tripled since I joined.\"", "depo-3": "\"Professionalism and technology in equal doses.\"",
-                "faq-title": "Frequently Asked Questions", "faq-1-q": "How does the map work?", "faq-1-a": "Uses high-precision geolocation.", "faq-2-q": "Do you partner with brokers?", "faq-2-a": "Yes! Freelance brokers can register.",
-                "faq-3-q": "Do you work with subdivisions?", "faq-3-a": "Yes. We specialize in sales management.", "faq-4-q": "What are payment methods?", "faq-4-a": "Cash, installments, financing.",
-                "faq-5-q": "How do you ensure legal security?", "faq-5-a": "Rigorous documentation analysis.", "cta-title": "Find Your Place in the Sun", "cta-text": "Whether to invest, build or live.",
-                "footer-text": "Real estate innovation on the coast of Ceará.", "footer-nav": "Navigation", "nav-map": "Property Map", "footer-dest": "Destinations", "footer-contact": "Contact", "footer-work": "Work with Us"
+                "invest-title": "Why invest here?", "invest-text": "The region from Camocim to Jericoacoara is experiencing a virtuous cycle of development driven by the Regional Airport, high-end tourism (Kitesurf) and renewable energy investments. Land in this area is not just square meters; they are assets in exponential appreciation.",
+                "stat-1": "Annual Average Appreciation", "stat-2": "Tourists per Year", "stat-3": "Preserved Beaches", "stat-4": "World Kite Destination",
+                
+                // SEÇÃO TECNOLOGIA (Atualizada para combinar com o português atual)
+                "label-tech": "TECHNOLOGY", 
+                "tech-title": "Interactive Property<br>Map", 
+                "tech-sub": "We are the first real estate agency in the region with real-time geolocation technology, allowing you to explore properties with surgical precision.",
+                "tech-1-t": "Plots and Land", 
+                "tech-1-d": "Construction areas in consolidated subdivisions, with complete infrastructure and regularized documentation.",
+                "tech-2-t": "Beach Houses", 
+                "tech-2-d": "Residences ready to live in, with premium finishing in privileged beachfront locations.",
+                "tech-3-t": "Commercial Spots", 
+                "tech-3-d": "Strategic properties for business in areas with high tourist flow and great financial return potential.",
+                "btn-test": "Access Properties Now", 
+                
+                "label-dest": "DESTINATIONS", "dest-title": "Explore the Jewels<br>of the West Coast",
+                "dest-sub": "From preserved villages to international destinations, discover the main areas where Golden Village operates.", "dest-1-tag": "International Hub", "dest-1-desc": "Ceará's most famous destination, with consolidated infrastructure and constant appreciation.",
+                "dest-2-tag": "Kitesurf Paradise", "dest-2-desc": "Constant winds and crystal clear lagoons attract kitesurfers from all over the world.", "dest-3-tag": "Dunes & Lagoons", "dest-3-desc": "Untouched nature, ideal for those seeking tranquility and connection with the environment.",
+                "dest-4-tag": "City of Wind", "dest-4-desc": "Urban center of the region, with commerce, services and easy access.", "label-life": "LIFESTYLE", "life-title": "More than a Property,<br>a Lifestyle",
+                "life-sub": "Living here is connecting with nature, sports and well-being. Discover what makes this region unique.", "life-food": "Gastronomy", "life-beach": "Beaches", "life-arch": "Architecture", "life-nat": "Nature",
+                "label-proc": "PROCESS", "proc-title": "How It Works", "proc-sub": "From first contact to the deed, we accompany you at every step.",
+                "proc-1-t": "Initial Consultation", "proc-1-d": "We understand your needs, budget and goals. We present options on the interactive map.", "proc-2-t": "Property Visit", "proc-2-d": "We schedule in-person or virtual visits. We show the land, surroundings and appreciation potential.",
+                "proc-3-t": "Legal Analysis", "proc-3-d": "We verify documentation, deeds, certificates and ensure total security in the transaction.", "proc-4-t": "Negotiation & Closing", "proc-4-d": "We mediate the negotiation, prepare the contract and accompany until the final deed.",
+                
+                // DEPOIMENTOS REMOVIDOS
+                
+                "faq-title": "Frequently Asked Questions", "faq-1-q": "How does the interactive map work?", "faq-1-a": "Our map uses high-precision geolocation to show properties, land boundaries, points of interest and infrastructure in real time.", "faq-2-q": "Does Golden Village partner with brokers?", "faq-2-a": "Yes! If you are a freelance broker and have properties in the region (or want to capture), you can register as a partner and use our platform.",
+                "faq-3-q": "Do you work with subdivisions and developments?", "faq-3-a": "Yes. We specialize in sales management for subdivisions, offering online availability maps, contract management and focused digital marketing.", "faq-4-q": "What are the payment methods?", "faq-4-a": "We work with various modalities: cash, installments directly with the owner, bank financing and exchange.",
+                "faq-5-q": "How do you ensure legal security?", "faq-5-a": "All properties undergo rigorous documentary analysis. We check deeds, negative certificates, fiscal and environmental regularity.", "cta-title": "Find Your Place in the Sun", "cta-text": "Whether to invest, build or realize the dream of a beach house.<br>The opportunity is here. The moment is now.",
+                "footer-text": "Real estate innovation on the coast of Ceará. We combine technology and local expertise to deliver the best deals in Camocim, Jeri and region.", "footer-nav": "Navigation", "nav-map": "Property Map", "footer-dest": "Regions", "footer-contact": "Contact", "footer-work": "Work with Us"
             }
         };
 
