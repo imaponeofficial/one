@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imap One | Loteamentos</title>
+    <title>Golden Village | Loteamentos</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,12 +16,13 @@
             --gold: #D4AF37;
             --gold-dark: #b8941e;
             --red: #C41E3A;
-            --black: #0A0A0A;
+            --black: #242424;
             --gray-dark: #141414;
             --gray-medium: #1A1A1A;
             --gray-light: #2A2A2A;
             --white: #FAFAFA;
             --text-gray: #999;
+            --primary: #D4AF37;
         }
 
         * { 
@@ -64,7 +66,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2rem 6%;
+            padding: 1.5rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,34 +76,30 @@
         }
 
         header.scrolled {
-            padding: 1.2rem 6%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 1rem 6%;
+            background: rgba(20, 15, 10, 0.4);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         .logo { 
-            font-size: 1rem; 
-            font-weight: 700; 
-            letter-spacing: 2px;
-            color: var(--white); 
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .logo span { 
-            font-weight: 600; 
-            background: linear-gradient(to right, #BF953F, #EDC967, #B38728, #BF953F); 
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shine 4s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
+        .logo img {
+            height: 55px;
+            width: auto;
+            mix-blend-mode: screen;
+            filter: brightness(100%);
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         nav { 
@@ -486,6 +484,50 @@
             opacity: 1; 
         }
 
+        /* === GRID DE LOTEAMENTOS (3 mockups) === */
+        .lotes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1300px;
+            margin: 4rem auto 0;
+            padding: 0 6%;
+        }
+
+        .lote-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lote-item .mockup {
+            width: 260px;
+            height: 520px;
+            margin-bottom: 2rem;
+        }
+
+        .lote-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+        }
+
+        .lote-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            max-width: 320px;
+        }
+
+        @media (max-width: 1100px) {
+            .lotes-grid {
+                grid-template-columns: 1fr;
+                gap: 5rem;
+            }
+        }
+
         /* === FAQ (Corrigido para igualar o testando1.html) === */
         .faq-section { 
             background: var(--black); /* No testando1 o FAQ é background black */
@@ -608,6 +650,7 @@
             font-family: 'Inter', sans-serif;
             display: block;
         }
+        .footer-logo .logo-group { display: block; font-size: 0.95rem; letter-spacing: 4px; font-weight: 400; margin-top: 4px; color: var(--white); }
         
         .footer-col h4 { 
             color: var(--white); 
@@ -619,7 +662,12 @@
             font-weight: 500;
         }
         
-        .footer-col ul li { margin-bottom: 1rem; }
+        .footer-col ul li { 
+            margin-bottom: 1rem; 
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
         
         .footer-col ul li a { 
             color: var(--text-gray);
@@ -683,34 +731,168 @@
             display: flex; 
             flex-direction: column; 
             position: fixed; 
-            top: 70px; 
-            left: 0; 
-            right: 0;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 2rem; 
-            gap: 1.8rem;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            animation: slideDown 0.4s ease; 
-            z-index: 998;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100dvh;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(90,60,25,0.35) 0%, transparent 60%),
+                linear-gradient(180deg, #1c130a 0%, #140d07 55%, #0d0906 100%);
+            align-items: center;
+            animation: fadeInMenu 0.35s ease; 
+            z-index: 2000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-menu-inner {
+            width: 100%;
+            max-width: 420px;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.6rem 1.8rem 2.5rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mobile-menu-logo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.2rem;
+            padding-top: 0.2rem;
+        }
+        .mobile-menu-logo img { height: 42px; width: auto; }
+
+        nav.mobile-active a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--white);
+            padding: 0.55rem 0;
+        }
+        nav.mobile-active a:hover { color: var(--gold); }
+
+        .mobile-close {
+            display: none;
+        }
+
+        .mobile-close.active {
+            display: block;
+            position: fixed;
+            top: 1.6rem;
+            right: 6%;
+            font-size: 1.3rem;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        nav.mobile-active a.mobile-cta {
+            margin-top: 1.3rem;
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            padding: 0.65rem 1rem;
+            color: var(--gold) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.6rem;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .mobile-divider {
+            width: 100%;
+            max-width: 260px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 1.6rem 0 1.4rem;
+        }
+
+        .mobile-footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+        }
+
+        .mobile-lang { font-size: 0.75rem; color: var(--text-gray); letter-spacing: 1px; }
+
+        nav.mobile-active a.mobile-whatsapp {
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            padding: 0.65rem 1rem;
+            color: var(--gold) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.6rem;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        nav.mobile-active a.mobile-phone, nav.mobile-active a.mobile-insta {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.78rem;
+            color: var(--text-gray) !important;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .mobile-address {
+            font-size: 0.72rem;
+            color: var(--text-gray);
+            text-align: center;
+            opacity: 0.7;
         }
         
-        @keyframes slideDown { 
-            from { opacity: 0; transform: translateY(-20px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        @keyframes fadeInMenu { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
         }
     </style>
 </head>
 <body>
 
     <header id="header">
-        <a href="#" class="logo">IMAP<span>ONE loteamentos</span></a>
-        
+        <div class="logo">
+            <a href="../"><img src="../logo.png" alt="Golden Village"></a>
+        </div>
+
+        <div class="mobile-close"><i class="fas fa-xmark"></i></div>
+
         <nav>
-            <a href="#inicio" data-i18n="nav-home">Início</a>
-            <a href="#funcionalidades" data-i18n="nav-features">Funcionalidades</a>
-            <a href="#diferenciais" data-i18n="nav-diff">Diferenciais</a>
-            <a href="#faq" data-i18n="nav-faq">Dúvidas</a>
+            <div class="mobile-menu-inner">
+                <div class="mobile-menu-logo"><img src="../logo.png" alt="Golden Village"></div>
+
+                <a href="../index.html#investimento" data-i18n="nav-invest">Investimento</a>
+                <a href="../index.html#tecnologia" data-i18n="nav-tech">Tecnologia</a>
+                <a href="../index.html#destinos" data-i18n="nav-dest">Destinos</a>
+                <a href="#lotes" data-i18n="nav-lots-section">Nossos Loteamentos</a>
+                <a href="#faq" data-i18n="nav-faq">Dúvidas</a>
+
+                <a href="#lotes" class="mobile-cta" data-i18n="nav-portfolio">Ver Portfólio Completo <i class="fa-solid fa-arrow-up-right" style="margin-left: 6px; font-size: 0.65rem;"></i></a>
+
+                <div class="mobile-divider"></div>
+
+                <div class="mobile-footer-info">
+                    <div class="mobile-lang" onclick="toggleLanguage()" style="cursor:pointer;"><i class="fa-solid fa-globe" style="margin-right:6px;"></i> <span id="lang-toggle-mobile">PT</span></div>
+                    <a href="https://wa.me/5585996138679" class="mobile-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="nav-whatsapp">Falar no WhatsApp</span></a>
+                    <a href="tel:+5585996138679" class="mobile-phone"><i class="fas fa-phone-alt"></i> (85) 99613-8679</a>
+                    <a href="https://www.instagram.com/imapofficial" class="mobile-insta"><i class="fab fa-instagram"></i> @goldenvillage</a>
+                    <div class="mobile-address">Camocim — CE</div>
+                </div>
+            </div>
         </nav>
 
         <div class="header-controls">
@@ -723,98 +905,69 @@
         <canvas id="hero-canvas"></canvas>
         
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-            <p class="hero-subtitle" data-i18n="hero-sub">Mapas Interativos para Loteamentos</p>
-            <h1 data-i18n="hero-title">Visualize e Gerencie<br>Seus Lotes no Mapa</h1>
-            <p class="hero-text" data-i18n="hero-text">Crie mapas profissionais dos seus loteamentos com status de vendas em tempo real. Seus clientes navegam, você controla.</p>
+            <p class="hero-subtitle" data-i18n="hero-sub">Loteamentos no Litoral Oeste do Ceará</p>
+            <h1 data-i18n="hero-title">Seu Terreno<br>no Paraíso</h1>
+            <p class="hero-text" data-i18n="hero-text">Lotes com documentação regularizada, infraestrutura completa e localização estratégica em Camocim, Jericoacoara e região. Navegue pelo mapa interativo e escolha o seu.</p>
             
             <div style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://imaponeofficial.github.io/sol-poente/" class="btn btn-gold">
-                    <i class="fa-solid fa-rocket" style="margin-right: 10px;"></i> <span data-i18n="btn-demo">Ver Demonstração</span>
+                <a href="#lotes" class="btn btn-gold">
+                    <i class="fa-solid fa-map-location-dot" style="margin-right: 10px;"></i> <span data-i18n="btn-demo">Ver Loteamentos</span>
                 </a>
             </div>
         </div>
 
-        <a href="#funcionalidades" class="scroll-down">
+        <a href="#lotes" class="scroll-down">
             <i class="fa-solid fa-chevron-down fa-2x"></i>
         </a>
     </section>
 
-    <section id="funcionalidades" class="benefits-section">
+
+    <section id="lotes" class="diferenciais-section">
         <div class="section-header" data-aos="fade-up">
-            <p class="section-label" data-i18n="feat-title">O Que Você Pode Fazer</p>
-            <h2 data-i18n="feat-sub">Funcionalidades Essenciais</h2>
+            <p class="section-label" data-i18n="diff-title">NOSSOS LOTEAMENTOS</p>
+            <h2 data-i18n="lotes-title">Escolha Seu Terreno<br>no Litoral Oeste</h2>
             <div class="divider"></div>
-            <p>Ferramentas projetadas para gestão visual e eficiente.</p>
+            <p data-i18n="lotes-sub">Navegue pelo mapa interativo de cada loteamento, veja a disponibilidade em tempo real e encontre o lote ideal para você.</p>
         </div>
 
-        <div class="benefits-grid">
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="benefit-icon"><i class="fa-solid fa-map-marked-alt"></i></div>
-                <h3 data-i18n="card-1-t">Mapas Interativos</h3>
-                <p data-i18n="card-1-d">Transforme a planta do seu loteamento em um mapa navegável. Seus clientes exploram cada lote com zoom, satélite e filtros.</p>
-            </div>
-
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="benefit-icon"><i class="fa-solid fa-sync-alt"></i></div>
-                <h3 data-i18n="card-2-t">Status em Tempo Real</h3>
-                <p data-i18n="card-2-d">Atualize o status dos lotes (Disponível, Reservado, Vendido) e veja as mudanças instantaneamente no mapa online.</p>
-            </div>
-
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="benefit-icon"><i class="fa-solid fa-file-code"></i></div>
-                <h3 data-i18n="card-3-t">Importação GeoJSON</h3>
-                <p data-i18n="card-3-d">Já tem o arquivo vetorial da planta? Importe diretamente no formato GeoJSON e tenha todos os lotes mapeados automaticamente.</p>
-            </div>
-
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="benefit-icon"><i class="fa-solid fa-cloud-upload-alt"></i></div>
-                <h3 data-i18n="card-4-t">Hospedagem Inclusa</h3>
-                <p data-i18n="card-4-d">Publicamos seu mapa gratuitamente no GitHub Pages. Sem complicação, sem custos extras de servidor.</p>
-            </div>
-
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="benefit-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                <h3 data-i18n="card-5-t">Botão WhatsApp</h3>
-                <p data-i18n="card-5-d">Cada lote disponível tem um botão direto para o seu WhatsApp. O cliente clica e já inicia a conversa com você.</p>
-            </div>
-
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="600">
-                <div class="benefit-icon"><i class="fa-solid fa-mobile-alt"></i></div>
-                <h3 data-i18n="card-6-t">100% Responsivo</h3>
-                <p data-i18n="card-6-d">Funciona perfeitamente em celular, tablet e computador. Seus clientes acessam de qualquer dispositivo.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="diferenciais" class="diferenciais-section">
-        <div class="preview-section">
-            <div class="preview-text" data-aos="fade-right">
-                <p class="section-label" data-i18n="diff-title">NOSSO GRANDE DIFERENCIAL</p>
-                <h2 style="margin-bottom: 2rem;">Liberdade e<br>Interatividade</h2>
-                <div class="divider" style="margin: 0 0 2rem 0;"></div>
-                <p data-i18n="diff-text" style="color: var(--text-gray); margin-bottom: 2rem; font-weight: 300;">
-                    Muitas plataformas travam você em criativos estáticos, sem interatividade pro cliente. <strong>Nós oferecemos a solução</strong> — você encaminha o link para seus clientes e o mapa está pronto para usar onde quiser.
-                </p>
-                <ul>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="diff-li-1"><strong>Arquivo HTML completo</strong> com o mapa funcionando</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="diff-li-2"><strong>Hospedagem gratuita:</strong> seu loteamento sempre online</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="diff-li-3"><strong>Painel admin integrado</strong> com senha para você atualizar lotes</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="diff-li-4"><strong>Sincronizado em nuvem:</strong> mudanças aparecem em todos os dispositivos</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="diff-li-5"><strong>Rota personalizada:</strong> o mapa mostra pro cliente a distância e tempo estimado</span></li>
-                </ul>
-                <p style="color: var(--gold); font-weight: 500; margin-top: 1.5rem; letter-spacing: 0.5px;" data-i18n="diff-highlight">
-                    Ideal para quem quer facilitar a gestão dos lotes em tempo real, oferecendo uma experiência Premium a seus clientes.
-                </p>
-            </div>
-            
-            <div class="preview-image" data-aos="fade-left">
+        <div class="lotes-grid">
+            <div class="lote-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="mockup">
                     <iframe 
                         src="https://imaponeofficial.github.io/sol-poente" 
-                        title="Demonstração Mapa Interativo"
+                        title="Residencial Sol Poente"
                         loading="lazy">
                     </iframe>
                 </div>
+                <h3 data-i18n="lote-1-t">Residencial Sol Poente</h3>
+                <p data-i18n="lote-1-d">Loteamento com infraestrutura completa a poucos minutos do centro de Camocim, ideal para quem busca tranquilidade perto da cidade.</p>
+                <a href="https://imaponeofficial.github.io/sol-poente" class="btn btn-gold" target="_blank" data-i18n="btn-ver-mais">Ver Mais</a>
+            </div>
+
+            <div class="lote-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="mockup">
+                    <iframe 
+                        src="https://imaponeofficial.github.io/sol-poente" 
+                        title="Residencial Horizonte Azul"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <h3 data-i18n="lote-2-t">Residencial Horizonte Azul</h3>
+                <p data-i18n="lote-2-d">Lotes próximos ao litoral, com vista privilegiada e fácil acesso às principais praias da região.</p>
+                <a href="https://imaponeofficial.github.io/sol-poente" class="btn btn-gold" target="_blank" data-i18n="btn-ver-mais">Ver Mais</a>
+            </div>
+
+            <div class="lote-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="mockup">
+                    <iframe 
+                        src="https://imaponeofficial.github.io/sol-poente" 
+                        title="Residencial Dunas do Vento"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <h3 data-i18n="lote-3-t">Residencial Dunas do Vento</h3>
+                <p data-i18n="lote-3-d">Loteamento em área de expansão com forte potencial de valorização, próximo aos principais pontos turísticos.</p>
+                <a href="https://imaponeofficial.github.io/sol-poente" class="btn btn-gold" target="_blank" data-i18n="btn-ver-mais">Ver Mais</a>
             </div>
         </div>
     </section>
@@ -824,77 +977,77 @@
             <p class="section-label">FAQ</p>
             <h2 data-i18n="faq-title">Perguntas Frequentes</h2>
             <div class="divider"></div>
-            <p data-i18n="faq-sub">Tire suas dúvidas sobre o sistema.</p>
+            <p data-i18n="faq-sub">Tire suas dúvidas sobre a compra do seu lote.</p>
         </div>
 
         <div class="faq-container" data-aos="fade-up">
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-1-q">Como funciona o modelo de cobrança?</span>
+                    <span data-i18n="faq-1-q">Quais são as formas de pagamento?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-1-a">
-                    Trabalhamos com duas opções: <strong>Loteamento Digital Estático</strong> (pagamento único) e <strong>Loteamento com Gestão</strong> (setup + mensalidade para acesso ao painel). Entre em contato para conhecer os valores e escolher o melhor plano para você.
+                    Trabalhamos com diversas modalidades: à vista, parcelado direto com a Golden Village, financiamento bancário e permuta. Fale com um de nossos corretores para conhecer as condições de cada loteamento.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-2-q">O que é o arquivo standalone?</span>
+                    <span data-i18n="faq-2-q">A documentação do lote é regularizada?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-2-a">
-                    É um arquivo HTML completo e independente com o mapa do seu loteamento. Você pode hospedar no GitHub Pages (gratuito), versel, etc com seu próprio domínio ou utilizar a nossa hospedagem gratuita. Inclui painel administrativo com senha para você gerenciar os status dos lotes.
+                    Sim. Todos os nossos loteamentos passam por análise documental rigorosa antes de entrarem no mapa de vendas — matrícula, certidões negativas e regularidade fiscal e ambiental.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-3-q">Preciso de conhecimento técnico?</span>
+                    <span data-i18n="faq-3-q">Posso visitar o lote antes de comprar?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-3-a">
-                    Não! Você fornece a planta (PDF, DWG ou GeoJSON) e nós criamos tudo. Para atualizar status dos lotes, basta acessar o painel com sua senha — simples como usar WhatsApp.
+                    Claro! Agendamos visitas presenciais ou, se preferir, uma visita virtual guiada. É só clicar no botão de WhatsApp do lote de interesse.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-4-q">O mapa funciona offline?</span>
+                    <span data-i18n="faq-4-q">O mapa está sempre atualizado?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-4-a">
-                    Não. O mapa precisa de internet para carregar as camadas de satélite e sincronizar os dados dos lotes. Mas o consumo de dados é mínimo e otimizado.
+                    Sim. Assim que um lote é reservado ou vendido, o status é atualizado em tempo real no mapa, para que você nunca veja uma informação desatualizada.
                 </div>
             </div>
             
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-5-q">Posso personalizar as cores e ícones?</span>
+                    <span data-i18n="faq-5-q">O loteamento tem infraestrutura pronta?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-5-a">
-                    Não. As cores para cada tipo de área (lotes, ruas, áreas verdes, lagos) são padrões, caso tenha uma área diferente das citadas podemos personalizar a cor.
+                    Sim. Nossos loteamentos contam com rede elétrica, acesso viário e, dependendo do empreendimento, rede de água já implantados — consulte os detalhes específicos de cada lote.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-6-q">Quantos lotes posso cadastrar?</span>
+                    <span data-i18n="faq-6-q">Posso construir imediatamente após a compra?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-6-a">
-                    O valor base cobre até 100 lotes. Para cada 50 lotes adicionais, há um acréscimo no setup. Entre em contato para orçamento personalizado se seu empreendimento for maior.
+                    Na maioria dos nossos loteamentos sim, desde que a documentação de compra esteja finalizada e você siga as normas de construção do empreendimento. Nossa equipe te orienta em cada etapa.
                 </div>
             </div>
 
             <div class="faq-item" onclick="toggleFaq(this)">
                 <div class="faq-question">
-                    <span data-i18n="faq-7-q">Os dados ficam seguros?</span>
+                    <span data-i18n="faq-7-q">Vocês têm corretores na região?</span>
                     <i class="fas fa-plus faq-icon"></i>
                 </div>
                 <div class="faq-answer" data-i18n="faq-7-a">
-                    Sim. Utilizamos o Supabase, uma infraestrutura robusta com criptografia e backups automáticos. Apenas você tem acesso ao painel administrativo através da sua senha exclusiva.
+                    Sim. Trabalhamos com corretores parceiros registrados no CRECI, que acompanham toda a negociação até a escritura final, com total segurança para você.
                 </div>
             </div>
         </div>
@@ -902,14 +1055,14 @@
 
     <section class="cta-section">
         <div data-aos="zoom-in">
-            <h2 data-i18n="cta-title">Pronto para Modernizar<br>Suas Vendas?</h2>
-            <p data-i18n="cta-text">Entre em contato e receba um orçamento personalizado para o seu loteamento.</p>
+            <h2 data-i18n="cta-title">Pronto para Garantir<br>Seu Lote?</h2>
+            <p data-i18n="cta-text">Fale agora com um de nossos corretores e encontre o terreno ideal para você.</p>
             <div style="margin-top: 2.5rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://wa.me/5585996138679?text=Olá!%20Quero%20criar%20um%20mapa%20interativo%20para%20meu%20loteamento" class="btn btn-gold">
-                    <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> <span data-i18n="btn-contact">Solicitar Orçamento</span>
+                <a href="https://wa.me/5585996138679?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20loteamentos%20da%20Golden%20Village" class="btn btn-gold">
+                    <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> <span data-i18n="btn-contact">Falar com Corretor</span>
                 </a>
-                <a href="https://imaponeofficial.github.io/sol-poente/" class="btn btn-outline">
-                    <i class="fa-solid fa-eye" style="margin-right: 10px;"></i> <span data-i18n="btn-map">Mapa Demonstração</span>
+                <a href="#lotes" class="btn btn-outline">
+                    <i class="fa-solid fa-map-location-dot" style="margin-right: 10px;"></i> <span data-i18n="btn-map">Ver Loteamentos</span>
                 </a>
             </div>
         </div>
@@ -918,8 +1071,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-col" style="text-align: center;">
-                <a href="#" class="footer-logo">IMAP<span style="color: var(--gold);">ONE</span></a>
-                <p data-i18n="footer-desc">Transformamos plantas de loteamentos em experiências digitais interativas. Tecnologia georreferenciada para o mercado imobiliário.</p>
+                <a href="../index.html" class="footer-logo">GOLDEN<span style="color: var(--gold);">VILLAGE</span><span class="logo-group">GROUP</span></a>
+                <p data-i18n="footer-desc">Inovação imobiliária no litoral do Ceará. Unimos tecnologia e expertise local para entregar os melhores negócios em Camocim, Jeri e região.</p>
                 <div class="social-links" style="margin-top: 1.5rem;">
                     <a href="https://www.instagram.com/imapofficial?igsh=eTVvMWc2ZmVycmp3"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/5585996138679"><i class="fab fa-whatsapp"></i></a>
@@ -931,19 +1084,18 @@
                 <h4 data-i18n="nav-footer">Navegação</h4>
                 <ul>
                     <li><a href="#inicio" data-i18n="nav-home">Início</a></li>
-                    <li><a href="#funcionalidades" data-i18n="nav-features">Funcionalidades</a></li>
-                    <li><a href="#diferenciais" data-i18n="nav-diff">Diferenciais</a></li>
+                    <li><a href="#lotes" data-i18n="nav-features">Nossos Loteamentos</a></li>
+                    <li><a href="#lotes" data-i18n="nav-lots-section">Nossos Loteamentos</a></li>
                     <li><a href="#faq" data-i18n="nav-faq">Dúvidas</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4 data-i18n="res-footer">Recursos</h4>
+                <h4 data-i18n="res-footer">Loteamentos</h4>
                 <ul>
-                    <li><a href="#" data-i18n="res-1">Mapas Interativos</a></li>
-                    <li><a href="#" data-i18n="res-2">Gestão de Status</a></li>
-                    <li><a href="#" data-i18n="res-3">Arquivo Standalone</a></li>
-                    <li><a href="#" data-i18n="res-4">Hospedagem Gratuita</a></li>
+                    <li><a href="https://imaponeofficial.github.io/sol-poente" target="_blank" data-i18n="res-1">Residencial Sol Poente</a></li>
+                    <li><a href="https://imaponeofficial.github.io/sol-poente" target="_blank" data-i18n="res-2">Residencial Horizonte Azul</a></li>
+                    <li><a href="https://imaponeofficial.github.io/sol-poente" target="_blank" data-i18n="res-3">Residencial Dunas do Vento</a></li>
                 </ul>
             </div>
 
@@ -951,14 +1103,14 @@
                 <h4 data-i18n="contact-footer">Contato</h4>
                 <ul>
                     <li><i class="fas fa-phone-alt" style="color: var(--gold); margin-right: 8px;"></i> (85) 99613-8679</li>
-                    <li><i class="fas fa-envelope" style="color: var(--gold); margin-right: 8px;"></i> imaponeofficial@gmail.com</li>
+                    <li><i class="fas fa-envelope" style="color: var(--gold); margin-right: 8px;"></i> contato@goldenvillage.com</li>
                     <li><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 8px;"></i> Brasil</li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 Imap One. <span data-i18n="rights">Todos os direitos reservados.</span></p>
+            <p>&copy; 2025 Golden Village. <span data-i18n="rights">Todos os direitos reservados.</span></p>
             <p data-i18n="dev-by">Desenvolvido com tecnologia Imap One</p>
         </div>
     </footer>
@@ -992,23 +1144,39 @@
             }
         }
 
-        // HAMBURGUER (Lógica Atualizada para o novo menu)
+        // HAMBURGUER (menu fullscreen com X)
         const hamburger = document.querySelector('.hamburger');
         const nav = document.querySelector('nav');
+        const mobileClose = document.querySelector('.mobile-close');
+
+        function openMobileMenu() {
+            nav.classList.add('mobile-active');
+            if (mobileClose) mobileClose.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            nav.classList.remove('mobile-active');
+            if (mobileClose) mobileClose.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         if (hamburger && nav) {
             hamburger.addEventListener('click', () => {
-                nav.classList.toggle('mobile-active');
-                const icon = hamburger.querySelector('i');
-                if (nav.classList.contains('mobile-active')) { 
-                    icon.className = 'fas fa-times'; 
-                } else { 
-                    icon.className = 'fas fa-bars'; 
+                if (nav.classList.contains('mobile-active')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
                 }
             });
-            document.querySelectorAll('nav a').forEach(link => {
+
+            if (mobileClose) {
+                mobileClose.addEventListener('click', closeMobileMenu);
+            }
+
+            document.querySelectorAll('nav a:not(.mobile-whatsapp)').forEach(link => {
                 link.addEventListener('click', () => {
-                    nav.classList.remove('mobile-active');
-                    hamburger.querySelector('i').className = 'fas fa-bars';
+                    closeMobileMenu();
                 });
             });
         }
@@ -1019,72 +1187,80 @@
                 "nav-home": "Home",
                 "nav-features": "Features",
                 "nav-diff": "Differentials",
+                "nav-lots-section": "Our Subdivisions",
                 "nav-faq": "FAQ",
-                "hero-sub": "Interactive Maps for Subdivisions",
-                "hero-title": "Visualize and Manage<br>Your Lots on the Map",
-                "hero-text": "Create professional maps of your subdivisions with real-time sales status. Your clients navigate, you control.",
-                "btn-demo": "View Demo",
-                "feat-title": "What You Can Do",
-                "feat-sub": "Essential tools for visual subdivision management.",
-                "card-1-t": "Interactive Maps",
-                "card-1-d": "Transform your subdivision plan into a navigable map. Your clients explore every lot with zoom, satellite, and filters.",
-                "card-2-t": "Real-time Status",
-                "card-2-d": "Update lot status (Available, Reserved, Sold) and see changes instantly on the online map.",
-                "card-3-t": "GeoJSON Import",
-                "card-3-d": "Already have the vector file? Import directly in GeoJSON format and have all lots mapped automatically.",
-                "card-4-t": "Hosting Included",
-                "card-4-d": "We publish your map for free on GitHub Pages. No hassle, no extra server costs.",
-                "card-5-t": "WhatsApp Button",
-                "card-5-d": "Each available lot has a direct button to your WhatsApp. The client clicks and starts the conversation with you.",
-                "card-6-t": "100% Responsive",
-                "card-6-d": "Works perfectly on mobile, tablet, and desktop. Your clients access it from any device.",
-                "diff-title": "Our Great Differentiator",
-                "diff-text": "Many platforms lock you into static creatives, without interactivity for the client. <strong>We offer the solution</strong> — you send the link to your clients and the map is ready to use anywhere.",
-                "diff-li-1": "<strong>Complete HTML file</strong> with the working map",
-                "diff-li-2": "<strong>Free hosting:</strong> your subdivision always online",
-                "diff-li-3": "<strong>Integrated admin panel</strong> with password for you to update lots",
-                "diff-li-4": "<strong>Cloud synced:</strong> changes appear on all devices",
-                "diff-li-5": "<strong>Custom route:</strong> the map shows the client the distance and estimated time",
-                "diff-highlight": "Ideal for those who want to facilitate real-time lot management, offering a Premium experience to their clients.",
+                "nav-invest": "Investment",
+                "nav-tech": "Technology",
+                "nav-dest": "Destinations",
+                "hero-sub": "Subdivisions on Ceará's West Coast",
+                "hero-title": "Your Land<br>in Paradise",
+                "hero-text": "Lots with regularized documentation, complete infrastructure and strategic location in Camocim, Jericoacoara and region. Browse the interactive map and choose yours.",
+                "btn-demo": "View Subdivisions",
+                "feat-title": "Why Buy With Us",
+                "feat-sub": "Security from Start to Finish",
+                "card-1-t": "Interactive Map",
+                "card-1-d": "Explore every subdivision with zoom, satellite view and filters. See exactly where your lot is before deciding.",
+                "card-2-t": "Real-time Availability",
+                "card-2-d": "See instantly which lots are available, reserved or sold. No outdated information.",
+                "card-3-t": "Regularized Documentation",
+                "card-3-d": "Deeds, certificates and all documentation verified and up to date, with total legal security in the purchase.",
+                "card-4-t": "Complete Infrastructure",
+                "card-4-d": "Subdivisions with power grid, water and road access already in place, ready to build.",
+                "card-5-t": "Direct Support",
+                "card-5-d": "Each available lot has a direct button to WhatsApp. Talk to a broker and clear your doubts instantly.",
+                "card-6-t": "100% Online",
+                "card-6-d": "Access the map from anywhere, on any device, and follow the purchase process remotely.",
+                "diff-title": "Our Subdivisions",
+                "lotes-title": "Choose Your Land<br>on the West Coast",
+                "lotes-sub": "Browse the interactive map of each subdivision, see real-time availability and find the ideal lot for you.",
+                "lote-1-t": "Sol Poente Residential",
+                "lote-1-d": "Subdivision with complete infrastructure just a few minutes from downtown Camocim, ideal for those seeking tranquility close to the city.",
+                "lote-2-t": "Horizonte Azul Residential",
+                "lote-2-d": "Lots close to the coast, with a privileged view and easy access to the region's main beaches.",
+                "lote-3-t": "Dunas do Vento Residential",
+                "lote-3-d": "Subdivision in an expanding area with strong appreciation potential, close to the main tourist spots.",
+                "btn-ver-mais": "View More",
                 "faq-title": "Frequently Asked Questions",
-                "faq-sub": "Clear your doubts about the system.",
-                "faq-1-q": "How does the pricing model work?",
-                "faq-1-a": "We work with two options: <strong>Static Digital Subdivision</strong> (one-time payment) and <strong>Managed Subdivision</strong> (setup + monthly fee for panel access). Contact us to know the values and choose the best plan for you.",
-                "faq-2-q": "What is the standalone file?",
-                "faq-2-a": "It is a complete and independent HTML file with your subdivision map. You can host it on GitHub Pages (free), Vercel, etc., with your own domain or use our free hosting. Includes admin panel with password for you to manage lot status.",
-                "faq-3-q": "Do I need technical knowledge?",
-                "faq-3-a": "No! You provide the plan (PDF, DWG, or GeoJSON) and we create everything. To update lot status, just access the panel with your password — simple as using WhatsApp.",
-                "faq-4-q": "Does the map work offline?",
-                "faq-4-a": "No. The map needs internet to load satellite layers and synchronize lot data. But data consumption is minimal and optimized.",
-                "faq-5-q": "Can I customize colors and icons?",
-                "faq-5-a": "No. Colors for each type of area (lots, streets, green areas, lakes) are standard. If you have a different area type, we can customize the color.",
-                "faq-6-q": "How many lots can I register?",
-                "faq-6-a": "The base price covers up to 100 lots. For every 50 additional lots, there is an increase in the setup fee. Contact us for a custom quote if your project is larger.",
-                "faq-7-q": "Is the data safe?",
-                "faq-7-a": "Yes. We use Supabase, a robust infrastructure with encryption and automatic backups. Only you have access to the administrative panel through your exclusive password.",
-                "cta-title": "Ready to Modernize Your Sales?",
-                "cta-text": "Get in touch and receive a personalized quote for your subdivision.",
-                "btn-contact": "Request Quote",
-                "btn-map": "Demo Map",
-                "footer-desc": "We transform subdivision plans into interactive digital experiences. Georeferenced technology for the real estate market.",
+                "faq-sub": "Clear your doubts about buying your lot.",
+                "faq-1-q": "What are the payment methods?",
+                "faq-1-a": "We work with various modalities: cash, installments directly with Golden Village, bank financing and exchange. Talk to one of our brokers to know the conditions of each subdivision.",
+                "faq-2-q": "Is the lot's documentation regularized?",
+                "faq-2-a": "Yes. All our subdivisions go through rigorous document analysis before entering the sales map — deed, negative certificates and fiscal and environmental regularity.",
+                "faq-3-q": "Can I visit the lot before buying?",
+                "faq-3-a": "Of course! We schedule in-person visits or, if you prefer, a guided virtual visit. Just click the WhatsApp button on the lot you're interested in.",
+                "faq-4-q": "Is the map always updated?",
+                "faq-4-a": "Yes. As soon as a lot is reserved or sold, the status is updated in real time on the map, so you never see outdated information.",
+                "faq-5-q": "Does the subdivision have infrastructure ready?",
+                "faq-5-a": "Yes. Our subdivisions have power grid, road access and, depending on the development, water supply already in place — check the specific details of each lot.",
+                "faq-6-q": "Can I build right after buying?",
+                "faq-6-a": "In most of our subdivisions, yes, as long as the purchase documentation is finalized and you follow the development's construction rules. Our team guides you through every step.",
+                "faq-7-q": "Do you have brokers in the region?",
+                "faq-7-a": "Yes. We work with partner brokers registered with CRECI, who follow the entire negotiation through to the final deed, with total security for you.",
+                "cta-title": "Ready to Secure<br>Your Lot?",
+                "cta-text": "Talk to one of our brokers now and find the ideal land for you.",
+                "btn-contact": "Talk to a Broker",
+                "btn-map": "View Subdivisions",
+                "footer-desc": "Real estate innovation on the coast of Ceará. We combine technology and local expertise to deliver the best deals in Camocim, Jeri and region.",
                 "nav-footer": "Navigation",
-                "res-footer": "Resources",
-                "res-1": "Interactive Maps",
-                "res-2": "Status Management",
-                "res-3": "Standalone File",
-                "res-4": "Free Hosting",
+                "res-footer": "Subdivisions",
+                "res-1": "Sol Poente Residential",
+                "res-2": "Horizonte Azul Residential",
+                "res-3": "Dunas do Vento Residential",
                 "contact-footer": "Contact",
                 "rights": "All rights reserved.",
-                "dev-by": "Developed with Imap One technology"
+                "dev-by": "Developed with Imap One technology",
+                "nav-portfolio": "View Full Portfolio", "nav-whatsapp": "Chat on WhatsApp"
             }
         };
 
         let currentLang = 'pt';
         function toggleLanguage() {
             const btn = document.getElementById('lang-toggle');
+            const btnMobile = document.getElementById('lang-toggle-mobile');
             if (currentLang === 'pt') {
                 currentLang = 'en';
-                btn.textContent = 'EN';
+                if (btn) btn.textContent = 'EN';
+                if (btnMobile) btnMobile.textContent = 'EN';
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations.en[key]) {
