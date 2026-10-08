@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golden Village | Imobiliária</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -83,10 +84,11 @@
 
         header.scrolled {
             padding: 1rem 6%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            background: rgba(20, 15, 10, 0.4);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         /* === LOGO NOVA (Golden Village) === */
@@ -222,26 +224,141 @@
 
         /* Menu Mobile */
         @media (max-width: 992px) {
+            .hamburger { display: block !important; }
+
             .nav-links {
-                display: none; /* Flex via JS */
+                display: none; /* Vira flex via JS, ver .mobile-active */
                 flex-direction: column;
                 position: fixed;
-                top: 80px; /* Ajustado para a altura da nova logo */
+                top: 0;
                 left: 0;
-                right: 0;
-                background: rgba(10, 10, 10, 0.98);
-                backdrop-filter: blur(20px);
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-                text-align: center;
-                z-index: 999;
+                width: 100%;
+                height: 100dvh;
+                background:
+                    radial-gradient(ellipse at 50% 0%, rgba(90,60,25,0.35) 0%, transparent 60%),
+                    linear-gradient(180deg, #1c130a 0%, #140d07 55%, #0d0906 100%);
+                align-items: center;
+                z-index: 2000;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
-            .nav-links.mobile-active { display: flex; animation: slideDown 0.4s ease; }
-            .hamburger { display: block; }
+            .nav-links.mobile-active { display: flex; animation: fadeInMenu 0.35s ease; }
+
+            .mobile-menu-inner {
+                width: 100%;
+                max-width: 420px;
+                min-height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1.6rem 1.8rem 2.5rem;
+                margin: 0 auto;
+            }
+
+            .mobile-menu-logo {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 2.2rem;
+                padding-top: 0.2rem;
+            }
+            .mobile-menu-logo img { height: 42px; width: auto; }
+
+            .nav-links a {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 1.5rem;
+                font-weight: 400;
+                letter-spacing: 0.5px;
+                color: var(--white);
+                padding: 0.55rem 0;
+            }
+            .nav-links a::after { display: none; }
+            .nav-links a:hover { color: var(--gold); }
+
+            .mobile-close.active {
+                display: block;
+                position: fixed;
+                top: 1.6rem;
+                right: 6%;
+                font-size: 1.3rem;
+                color: var(--white);
+                cursor: pointer;
+                z-index: 2001;
+            }
+
+            .nav-links a.mobile-cta {
+                margin-top: 1.3rem;
+                width: 100%;
+                border: 1px solid rgba(212, 175, 55, 0.45);
+                padding: 0.65rem 1rem;
+                color: var(--gold) !important;
+                font-family: 'Inter', sans-serif !important;
+                font-size: 0.6rem;
+                letter-spacing: 1.3px;
+                text-transform: uppercase;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            .mobile-divider {
+                width: 100%;
+                max-width: 260px;
+                height: 1px;
+                background: rgba(255,255,255,0.1);
+                margin: 1.6rem 0 1.4rem;
+            }
+
+            .mobile-footer-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                font-family: 'Inter', sans-serif;
+                width: 100%;
+            }
+
+            .mobile-lang {
+                font-size: 0.75rem;
+                color: var(--text-gray);
+                letter-spacing: 1px;
+            }
+
+            .nav-links a.mobile-whatsapp {
+                width: 100%;
+                border: 1px solid rgba(212, 175, 55, 0.45);
+                padding: 0.65rem 1rem;
+                color: var(--gold) !important;
+                font-family: 'Inter', sans-serif !important;
+                font-size: 0.6rem;
+                letter-spacing: 1.1px;
+                text-transform: uppercase;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-links a.mobile-phone, .nav-links a.mobile-insta {
+                font-family: 'Inter', sans-serif !important;
+                font-size: 0.78rem;
+                color: var(--text-gray) !important;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .mobile-address {
+                font-size: 0.72rem;
+                color: var(--text-gray);
+                text-align: center;
+                opacity: 0.7;
+            }
         }
 
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .mobile-close { display: none; }
+
+        @keyframes fadeInMenu { from { opacity: 0; } to { opacity: 1; } }
 
         /* === SEÇÕES GERAIS === */
         section { padding: 10rem 6%; position: relative; }
@@ -360,32 +477,31 @@
 
         /* === TECNOLOGIA (Estilo Cards do Testando1) === */
         .tech-section { background-color: var(--black); }
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .tech-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 3.5rem 3rem; 
+            margin-top: 4rem; 
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         
         .tech-card { 
-            background: rgba(255, 255, 255, 0.02);
-            padding: 3.5rem 2.5rem; 
-            border: 1px solid rgba(255, 255, 255, 0.03);
             text-align: center; 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 1rem;
             position: relative;
-            overflow: hidden;
         }
-        .tech-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            transform: scaleX(0); transition: transform 0.5s ease;
-        }
-        .tech-card:hover {
-            border-color: rgba(212, 175, 55, 0.15);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-8px);
-        }
-        .tech-card:hover::before { transform: scaleX(1); }
 
-        .tech-icon { font-size: 2rem; color: var(--gold); margin-bottom: 2rem; display: inline-block; opacity: 0.9; }
-        .tech-card h4 { font-size: 1.3rem; margin-bottom: 1rem; font-weight: 400; letter-spacing: 0.5px; }
-        .tech-card p { color: var(--text-gray); font-size: 0.95rem; font-weight: 300; }
+        .tech-card h4 { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem; 
+            margin-bottom: 1rem; 
+            font-weight: 500; 
+            letter-spacing: 0.5px; 
+            color: var(--gold);
+        }
+        .tech-card p { color: var(--text-gray); font-size: 0.95rem; font-weight: 300; line-height: 1.7; }
 
         /* === DESTINOS === */
         .destinos-section { background: var(--gray-dark); }
@@ -401,8 +517,13 @@
         }
         .destino-overlay h3 { font-size: 1.8rem; margin-bottom: 5px; font-weight: 400; }
         .destino-overlay span { color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; font-weight: 500; }
-        .destino-overlay p { opacity: 0; transform: translateY(10px); transition: 0.4s; color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 15px; font-weight: 300; }
-        .destino-card:hover .destino-overlay p { opacity: 1; transform: translateY(0); }
+        .destino-overlay p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 15px; font-weight: 300; }
+
+        /* Desktop: texto some e só aparece no hover (mouse) */
+        @media (hover: hover) and (pointer: fine) {
+            .destino-overlay p { opacity: 0; transform: translateY(10px); transition: 0.4s; }
+            .destino-card:hover .destino-overlay p { opacity: 1; transform: translateY(0); }
+        }
 
         /* === LIFESTYLE === */
         .lifestyle-section { background: var(--black); }
@@ -423,9 +544,14 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: rgba(10,10,10,0.85); padding: 1rem 2.5rem; border: 1px solid var(--gold);
             color: var(--white); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 3px; font-weight: 500;
-            opacity: 0; transition: 0.4s; backdrop-filter: blur(5px); font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(5px); font-family: 'Inter', sans-serif;
         }
-        .lifestyle-item:hover .lifestyle-label { opacity: 1; }
+
+        /* Desktop: label some e só aparece no hover (mouse) */
+        @media (hover: hover) and (pointer: fine) {
+            .lifestyle-label { opacity: 0; transition: 0.4s; }
+            .lifestyle-item:hover .lifestyle-label { opacity: 1; }
+        }
 
         /* === PROCESSO (Design Híbrido: Timeline + Estilo Novo) === */
         .processo-section { background: var(--gray-dark); }
@@ -501,10 +627,11 @@
 
         .footer-logo { font-size: 1.6rem; font-weight: 600; color: var(--white); margin-bottom: 1rem; display: block; letter-spacing: 2px; font-family: 'Inter', sans-serif; }
         .footer-logo span { color: var(--gold); }
+        .footer-logo .logo-group { display: block; font-size: 0.95rem; letter-spacing: 4px; font-weight: 400; margin-top: 4px; color: var(--white); }
         .footer-about p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; }
         
         .footer-col h4 { color: var(--white); margin-bottom: 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Inter', sans-serif; font-weight: 500; }
-        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li { margin-bottom: 0.8rem; color: var(--text-gray); font-size: 0.85rem; font-weight: 300; }
         .footer-col ul li a { font-size: 0.85rem; transition: 0.3s; color: var(--text-gray); font-weight: 300; }
         .footer-col ul li a:hover { color: var(--gold); padding-left: 5px; }
 
@@ -560,14 +687,29 @@
             <img src="logo.png" alt="Golden Village">
         </div>
         
+        <div class="mobile-close"><i class="fas fa-xmark"></i></div>
+
         <nav class="nav-links">
-            <a href="loteamentos/" data-i18n="nav-lots">Loteamentos</a>
-            <a href="#investimento" data-i18n="nav-invest">Investimento</a>
-            <a href="#tecnologia" data-i18n="nav-tech">Tecnologia</a>
-            <a href="#destinos" data-i18n="nav-dest">Destinos</a>
-            <a href="#lifestyle" data-i18n="nav-life">Lifestyle</a>
-            <a href="corretores/" data-i18n="nav-brokers">Corretores</a>
-            <a href="blog/" data-i18n="nav-blog">Blog</a>
+            <div class="mobile-menu-inner">
+                <div class="mobile-menu-logo"><img src="logo.png" alt="Golden Village"></div>
+
+                <a href="loteamentos/" data-i18n="nav-lots">Loteamentos</a>
+                <a href="#investimento" data-i18n="nav-invest">Investimento</a>
+                <a href="#tecnologia" data-i18n="nav-tech">Tecnologia</a>
+                <a href="#destinos" data-i18n="nav-dest">Destinos</a>
+                <a href="#lifestyle" data-i18n="nav-life">Lifestyle</a>
+                <a href="loteamentos/" class="mobile-cta" data-i18n="nav-portfolio">Ver Portfólio Completo <i class="fa-solid fa-arrow-up-right" style="margin-left: 6px; font-size: 0.65rem;"></i></a>
+
+                <div class="mobile-divider"></div>
+
+                <div class="mobile-footer-info">
+                    <div class="mobile-lang" onclick="toggleLanguage()" style="cursor:pointer;"><i class="fa-solid fa-globe" style="margin-right:6px;"></i> <span id="lang-toggle-mobile">PT</span></div>
+                    <a href="https://wa.me/5585996138679" class="mobile-whatsapp"><i class="fab fa-whatsapp"></i> <span data-i18n="nav-whatsapp">Falar no WhatsApp</span></a>
+                    <a href="tel:+5585996138679" class="mobile-phone"><i class="fas fa-phone-alt"></i> (85) 99613-8679</a>
+                    <a href="https://www.instagram.com/imapofficial" class="mobile-insta"><i class="fab fa-instagram"></i> @goldenvillage</a>
+                    <div class="mobile-address">Camocim — CE</div>
+                </div>
+            </div>
         </nav>
 
         <div class="header-controls">
@@ -632,19 +774,16 @@
 
         <div class="tech-grid">
             <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="tech-icon"><i class="fas fa-map-marked-alt"></i></div>
                 <h4 data-i18n="tech-1-t">Lotes e Terrenos</h4>
                 <p data-i18n="tech-1-d">Áreas para construção em loteamentos consolidados, com infraestrutura completa e documentação regularizada.</p>
             </div>
 
             <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="tech-icon"><i class="fas fa-filter"></i></div>
                 <h4 data-i18n="tech-2-t">Casas de Praia</h4>
                 <p data-i18n="tech-2-d">Residências prontas para morar, com acabamento premium em localizações privilegiadas à beira-mar.</p>
             </div>
 
             <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="tech-icon"><i class="fas fa-satellite"></i></div>
                 <h4 data-i18n="tech-3-t">Pontos Comerciais</h4>
                 <p data-i18n="tech-3-d">Imóveis estratégicos para negócios em áreas de alto fluxo turístico e grande potencial de retorno financeiro.</p>
             </div>
@@ -823,7 +962,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-about">
-                <a href="#" class="footer-logo">GOLDEN<span>VILLAGE</span></a>
+                <a href="#" class="footer-logo">GOLDEN<span>VILLAGE</span><span class="logo-group">GROUP</span></a>
                 <p data-i18n="footer-text">Inovação imobiliária no litoral do Ceará. Unimos tecnologia e expertise local para entregar os melhores negócios em Camocim, Jeri e região.</p>
                 <div style="margin-top: 1.5rem;">
                     <a href="https://www.instagram.com/imapofficial?igsh=eTVvMWc2ZmVycmp3" style="margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
@@ -858,7 +997,6 @@
                     <li><i class="fas fa-phone-alt text-gold"></i> (85) 99613-8679</li>
                     <li><i class="fas fa-envelope text-gold"></i> contato@goldenvillage.com</li>
                     <li><i class="fas fa-map-marker-alt text-gold"></i> Brasil</li>
-                    <li style="margin-top: 1rem;"><a href="corretores/" style="color: var(--gold);" data-i18n="footer-work">Trabalhe Conosco</a></li>
                 </ul>
             </div>
         </div>
@@ -959,23 +1097,37 @@
         // Menu Hambúrguer (Mobile)
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        const mobileClose = document.querySelector('.mobile-close');
+
+        function openMobileMenu() {
+            navLinks.classList.add('mobile-active');
+            if (mobileClose) mobileClose.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            navLinks.classList.remove('mobile-active');
+            if (mobileClose) mobileClose.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', function() {
-                navLinks.classList.toggle('mobile-active');
-                const icon = this.querySelector('i');
                 if (navLinks.classList.contains('mobile-active')) {
-                    icon.className = 'fas fa-times';
+                    closeMobileMenu();
                 } else {
-                    icon.className = 'fas fa-bars';
+                    openMobileMenu();
                 }
             });
 
-            // Fecha menu ao clicar em link
-            document.querySelectorAll('.nav-links a').forEach(link => {
+            if (mobileClose) {
+                mobileClose.addEventListener('click', closeMobileMenu);
+            }
+
+            // Fecha menu ao clicar em um link de navegação (não o CTA de idioma/whatsapp)
+            document.querySelectorAll('.nav-links a:not(.mobile-whatsapp)').forEach(link => {
                 link.addEventListener('click', function() {
-                    navLinks.classList.remove('mobile-active');
-                    hamburger.querySelector('i').className = 'fas fa-bars';
+                    closeMobileMenu();
                 });
             });
         }
@@ -1017,16 +1169,19 @@
                 "faq-title": "Frequently Asked Questions", "faq-1-q": "How does the interactive map work?", "faq-1-a": "Our map uses high-precision geolocation to show properties, land boundaries, points of interest and infrastructure in real time.", "faq-2-q": "Does Golden Village partner with brokers?", "faq-2-a": "Yes! If you are a freelance broker and have properties in the region (or want to capture), you can register as a partner and use our platform.",
                 "faq-3-q": "Do you work with subdivisions and developments?", "faq-3-a": "Yes. We specialize in sales management for subdivisions, offering online availability maps, contract management and focused digital marketing.", "faq-4-q": "What are the payment methods?", "faq-4-a": "We work with various modalities: cash, installments directly with the owner, bank financing and exchange.",
                 "faq-5-q": "How do you ensure legal security?", "faq-5-a": "All properties undergo rigorous documentary analysis. We check deeds, negative certificates, fiscal and environmental regularity.", "cta-title": "Find Your Place in the Sun", "cta-text": "Whether to invest, build or realize the dream of a beach house.<br>The opportunity is here. The moment is now.",
-                "footer-text": "Real estate innovation on the coast of Ceará. We combine technology and local expertise to deliver the best deals in Camocim, Jeri and region.", "footer-nav": "Navigation", "nav-map": "Property Map", "footer-dest": "Regions", "footer-contact": "Contact", "footer-work": "Work with Us"
+                "footer-text": "Real estate innovation on the coast of Ceará. We combine technology and local expertise to deliver the best deals in Camocim, Jeri and region.", "footer-nav": "Navigation", "nav-map": "Property Map", "footer-dest": "Regions", "footer-contact": "Contact", "footer-work": "Work with Us",
+                "nav-portfolio": "View Full Portfolio", "nav-whatsapp": "Chat on WhatsApp"
             }
         };
 
         let currentLang = 'pt';
         function toggleLanguage() {
             const btn = document.getElementById('lang-toggle');
+            const btnMobile = document.getElementById('lang-toggle-mobile');
             if (currentLang === 'pt') {
                 currentLang = 'en';
-                btn.textContent = 'EN';
+                if (btn) btn.textContent = 'EN';
+                if (btnMobile) btnMobile.textContent = 'EN';
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations.en[key]) el.innerHTML = translations.en[key];
