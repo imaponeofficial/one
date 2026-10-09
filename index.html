@@ -698,7 +698,7 @@
                 <a href="#tecnologia" data-i18n="nav-tech">Tecnologia</a>
                 <a href="#destinos" data-i18n="nav-dest">Destinos</a>
                 <a href="#lifestyle" data-i18n="nav-life">Lifestyle</a>
-                <a href="loteamentos/" class="mobile-cta" data-i18n="nav-portfolio">Ver Portfólio Completo <i class="fa-solid fa-arrow-up-right" style="margin-left: 6px; font-size: 0.65rem;"></i></a>
+                <a href="https://imapone.vercel.app/" class="mobile-cta" data-i18n="nav-portfolio">Ver Portfólio Completo <i class="fa-solid fa-arrow-up-right" style="margin-left: 6px; font-size: 0.65rem;"></i></a>
 
                 <div class="mobile-divider"></div>
 
@@ -726,7 +726,6 @@
             
             <div class="hero-buttons">
                 <a href="https://imapone.vercel.app/" class="btn btn-gold" data-i18n="btn-explore">Acessar Mapa</a>
-                <a href="corretores/" class="btn btn-outline" data-i18n="btn-partner">Seja Parceiro</a>
             </div>
         </div>
     </section>
@@ -805,7 +804,7 @@
         <div class="destinos-grid">
             <div class="destino-card" data-aos="fade-up" data-aos-delay="100">
                 <img src="img/guriu.jpg" alt="Jericoacoara">
-                <div class="destino-overlay">
+                <div class="destino-overlay" data-aos="fade-up" data-aos-delay="250" data-aos-anchor-placement="top-bottom">
                     <h3>Jericoacoara</h3>
                     <span data-i18n="dest-1-tag">Hub Internacional</span>
                     <p data-i18n="dest-1-desc">O destino mais famoso do Ceará, com infraestrutura consolidada e valorização constante.</p>
@@ -814,7 +813,7 @@
 
             <div class="destino-card" data-aos="fade-up" data-aos-delay="200">
                 <img src="img/prea1.jpg" alt="Preá">
-                <div class="destino-overlay">
+                <div class="destino-overlay" data-aos="fade-up" data-aos-delay="350" data-aos-anchor-placement="top-bottom">
                     <h3>Preá</h3>
                     <span data-i18n="dest-2-tag">Paraíso do Kitesurf</span>
                     <p data-i18n="dest-2-desc">Ventos constantes e lagoas cristalinas atraem kitesurfistas do mundo todo.</p>
@@ -823,7 +822,7 @@
 
             <div class="destino-card" data-aos="fade-up" data-aos-delay="300">
                 <img src="img/tatajuba.jpg" alt="Tatajuba">
-                <div class="destino-overlay">
+                <div class="destino-overlay" data-aos="fade-up" data-aos-delay="450" data-aos-anchor-placement="top-bottom">
                     <h3>Tatajuba</h3>
                     <span data-i18n="dest-3-tag">Dunas & Lagoas</span>
                     <p data-i18n="dest-3-desc">Natureza intocada, ideal para quem busca tranquilidade e conexão com o meio ambiente.</p>
@@ -832,7 +831,7 @@
 
             <div class="destino-card" data-aos="fade-up" data-aos-delay="400">
                 <img src="img/camocim.jpg" alt="Camocim">
-                <div class="destino-overlay">
+                <div class="destino-overlay" data-aos="fade-up" data-aos-delay="550" data-aos-anchor-placement="top-bottom">
                     <h3>Camocim</h3>
                     <span data-i18n="dest-4-tag">A Cidade do Vento</span>
                     <p data-i18n="dest-4-desc">Centro urbano da região, com comércio, serviços e acesso facilitado.</p>
@@ -852,23 +851,23 @@
         <div class="lifestyle-grid">
             <div class="lifestyle-item large" data-aos="zoom-in">
                 <img src="img/kitesurf.jpg" alt="Kitesurf">
-                <div class="lifestyle-label">Kitesurf</div>
+                <div class="lifestyle-label" data-aos="fade-up" data-aos-delay="150" data-aos-anchor-placement="top-bottom">Kitesurf</div>
             </div>
             <div class="lifestyle-item" data-aos="zoom-in" data-aos-delay="100">
                 <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Gastronomia">
-                <div class="lifestyle-label" data-i18n="life-food">Gastronomia</div>
+                <div class="lifestyle-label" data-i18n="life-food" data-aos="fade-up" data-aos-delay="250" data-aos-anchor-placement="top-bottom">Gastronomia</div>
             </div>
             <div class="lifestyle-item" data-aos="zoom-in" data-aos-delay="200">
                 <img src="img/praia.jpg" alt="Praias">
-                <div class="lifestyle-label" data-i18n="life-beach">Praias</div>
+                <div class="lifestyle-label" data-i18n="life-beach" data-aos="fade-up" data-aos-delay="350" data-aos-anchor-placement="top-bottom">Praias</div>
             </div>
             <div class="lifestyle-item" data-aos="zoom-in" data-aos-delay="300">
                 <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Arquitetura">
-                <div class="lifestyle-label" data-i18n="life-arch">Arquitetura</div>
+                <div class="lifestyle-label" data-i18n="life-arch" data-aos="fade-up" data-aos-delay="450" data-aos-anchor-placement="top-bottom">Arquitetura</div>
             </div>
             <div class="lifestyle-item" data-aos="zoom-in" data-aos-delay="400">
                 <img src="img/natureza.png" alt="Natureza">
-                <div class="lifestyle-label" data-i18n="life-nat">Natureza</div>
+                <div class="lifestyle-label" data-i18n="life-nat" data-aos="fade-up" data-aos-delay="550" data-aos-anchor-placement="top-bottom">Natureza</div>
             </div>
         </div>
     </section>
@@ -1099,16 +1098,32 @@
         const navLinks = document.querySelector('.nav-links');
         const mobileClose = document.querySelector('.mobile-close');
 
+        let scrollYBeforeMenu = 0;
+
         function openMobileMenu() {
             navLinks.classList.add('mobile-active');
             if (mobileClose) mobileClose.classList.add('active');
+            scrollYBeforeMenu = window.scrollY || window.pageYOffset || 0;
+            document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = -scrollYBeforeMenu + 'px';
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.width = '100%';
         }
 
         function closeMobileMenu() {
             navLinks.classList.remove('mobile-active');
             if (mobileClose) mobileClose.classList.remove('active');
+            document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollYBeforeMenu);
         }
 
         if (hamburger && navLinks) {
